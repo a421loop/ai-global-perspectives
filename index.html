@@ -1,60 +1,206 @@
 <!doctype html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <title>(AI)DENTITY: Who Are We in the Age of Algorithms?</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="description" content="Discover your AI persona and explore how 59,542 people worldwide relate to artificial intelligence">
-
-    <!-- External Dependencies -->
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="https://unpkg.com/scrollama"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-
-    <!-- Project Styles -->
-    <link rel="stylesheet" href="styles.css">
+	<title>(AI)DENTITY: Who Are We in the Age of Algorithms?</title>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+	<meta name='description' content='Discover your AI persona and explore how 59,542 people worldwide relate to artificial intelligence' />
+	
+	<!-- External Dependencies -->
+	<script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
+	<script src='https://d3js.org/d3.v7.min.js'></script>
+	<script src='https://unpkg.com/scrollama'></script>
+	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+	
+	<!-- Project Styles -->
+	<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <p class="loading-text">Loading global AI perspectives...</p>
-        </div>
-    </div>
+	<div class="loading-screen" id="loadingScreen">
+		<div class="loading-content">
+			<div class="loading-spinner"></div>
+			<p class="loading-text">Loading global AI perspectives...</p>
+		</div>
+	</div>
 
-    <main id="content">
-        <!-- Header -->
-        <header>
-            <div class="intro">
-                <h1 class="intro__hed">(AI)DENTITY</h1>
-                <p class="intro__dek">Who Are We in the Age of Algorithms?</p>
-                <p class="intro__subdek">Discover how 59,542 people worldwide relate to AI</p>
-            </div>
-        </header>
-        
-        <!-- Interactive Map -->
-        <div class="fixed-map">
-            <div class="map-container" id="map"></div>
-            <div class="chart-title">
-                <p class="chart-hed"><span>Explore Global AI Perspectives</span></p>
-                <p class="chart-dek"><span>Click and drag to explore • Zoom to see regional patterns</span></p>
-            </div>
-            <div id="color-legend"></div>
-        </div>
-        
-        <div id="tooltip"></div>
-        
-        <!-- Scrollytelling Content -->
-        <div class="text-container">
-            <!-- Insert your full markup here -->
-        </div>
-    </main>
+	<main id="content">
+		<!-- Header -->
+		<header>
+			<div class="intro">
+				<h1 class="intro__hed">(AI)DENTITY</h1>
+				<p class="intro__dek">Who Are We in the Age of Algorithms?</p>
+				<p class="intro__subdek">Discover how 59,542 people worldwide relate to AI</p>
+			</div>
+		</header>
+		
+		<!-- Interactive Map (Now clickable from start) -->
+		<div class="fixed-map">
+			<div class="map-container" id="map"></div>
+			<div class="chart-title">
+				<p class="chart-hed"><span>Explore Global AI Perspectives</span></p>
+				<p class="chart-dek"><span>Click and drag to explore • Zoom to see regional patterns</span></p>
+			</div>
+			<div id="color-legend"></div>
+		</div>
+		
+		<div id="tooltip"></div>
+		
+		<!-- Scrollytelling Content -->
+		<div class="text-container">
+			<!-- Opening -->
+			<div class="text-wrapper">
+				<p class="big">What's your AI personality?</p>
+				<p>Before we dive into global perspectives, discover which of the 5 AI personas best represents you.</p>
+			</div>
+			<div class="step" data-step="intro"></div>
+			
+			<!-- AI Persona Quiz -->
+			<div class="text-wrapper quiz-section">
+				<p class="big">Take the Quiz</p>
+				<div class="quiz-container" id="aiQuiz">
+					<div class="quiz-question active" data-question="0">
+						<h3>When you hear "artificial intelligence," what's your first thought?</h3>
+						<div class="quiz-options">
+							<button data-persona="1" data-weight="3">How will this change human relationships?</button>
+							<button data-persona="0" data-weight="3">I wonder if I'll become too dependent on it</button>
+							<button data-persona="3" data-weight="3">Is my data safe?</button>
+							<button data-persona="2" data-weight="3">Will this affect my job?</button>
+							<button data-persona="4" data-weight="3">How will this impact our cultural values?</button>
+						</div>
+					</div>
+					
+					<div class="quiz-question" data-question="1">
+						<h3>Your ideal AI future looks like:</h3>
+						<div class="quiz-options">
+							<button data-persona="1" data-weight="2">AI helps humans connect better</button>
+							<button data-persona="0" data-weight="2">AI is a tool, not a replacement</button>
+							<button data-persona="3" data-weight="2">AI with strong privacy protections</button>
+							<button data-persona="2" data-weight="2">AI creates new job opportunities</button>
+							<button data-persona="4" data-weight="2">AI respects cultural diversity</button>
+						</div>
+					</div>
+					
+					<div class="quiz-question" data-question="2">
+						<h3>What worries you most about AI development?</h3>
+						<div class="quiz-options">
+							<button data-persona="1" data-weight="3">People becoming isolated from each other</button>
+							<button data-persona="0" data-weight="3">Losing human agency and autonomy</button>
+							<button data-persona="3" data-weight="3">Surveillance and control by institutions</button>
+							<button data-persona="2" data-weight="3">Economic disruption and job loss</button>
+							<button data-persona="4" data-weight="3">Erosion of traditional values</button>
+						</div>
+					</div>
+					
+					<div class="quiz-results" id="quizResults" style="display: none;">
+						<h3>Your AI Persona:</h3>
+						<div class="result-persona" id="resultPersona"></div>
+						<button class="quiz-restart" onclick="restartQuiz()">Take Quiz Again</button>
+					</div>
+				</div>
+			</div>
+			<div class="step" data-step="quiz"></div>
+			
+			<!-- Introduce the 5 Personas -->
+			<div class="text-wrapper">
+				<p class="big">Meet the 5 personas</p>
+				<p>We analyzed 59,542 voices from around the world and discovered 5 distinct ways people relate to AI.</p>
+				<div class="persona-grid" id="personaGrid"></div>
+			</div>
+			<div class="step" data-step="personas-intro"></div>
+			
+			<!-- How We Found Them -->
+			<div class="text-wrapper">
+				<p class="big">How we discovered these personas</p>
+				<div class="process-viz" id="processViz">
+					<div class="process-step">
+						<div class="process-icon">📊</div>
+						<h4>Data Collection</h4>
+						<p>59,542 participants across 3 global studies shared their AI perspectives</p>
+					</div>
+					<div class="process-step">
+						<div class="process-icon">🔍</div>
+						<h4>Feature Analysis</h4>
+						<p>We identified 10 key dimensions including fears, hopes, and response patterns</p>
+					</div>
+					<div class="process-step">
+						<div class="process-icon">🎯</div>
+						<h4>Clustering</h4>
+						<p>Machine learning revealed 5 distinct persona clusters with 52.7% accuracy</p>
+					</div>
+				</div>
+			</div>
+			<div class="step" data-step="process"></div>
+			
+			<!-- The Majority -->
+			<div class="text-wrapper">
+				<p>The largest group—nearly <span class="persona-highlight social">60% of all participants</span>—are Balanced Social Participants.</p>
+				<p>They focus on how AI affects human connection and social fabric.</p>
+			</div>
+			<div class="step" data-step="social-persona"></div>
+			
+			<!-- Global Variation -->
+			<div class="text-wrapper">
+				<p>But these perspectives vary dramatically across cultures and regions.</p>
+				<p>Explore the map to see how different parts of the world approach AI.</p>
+			</div>
+			<div class="step" data-step="global-variation"></div>
+			
+			<!-- Economic Concerns -->
+			<div class="text-wrapper">
+				<p>In some regions, <span class="persona-highlight economic">economic concerns</span> dominate the conversation.</p>
+				<p>22% of participants worry primarily about AI's impact on jobs and livelihoods.</p>
+			</div>
+			<div class="step" data-step="economic-concerns"></div>
+			
+			<!-- Security Focus -->
+			<div class="text-wrapper">
+				<p>Others prioritize <span class="persona-highlight security">safety and security</span> above all else.</p>
+				<p>This smaller but vocal group (3.4%) shapes important AI policy discussions.</p>
+			</div>
+			<div class="step" data-step="security-focus"></div>
+			
+			<!-- Cultural Preservation -->
+			<div class="text-wrapper">
+				<p>A significant group focuses on <span class="persona-highlight cultural">preserving cultural values</span> in an AI-driven world.</p>
+				<p>8.4% of participants see AI through the lens of cultural identity and tradition.</p>
+			</div>
+			<div class="step" data-step="cultural-preservation"></div>
+			
+			<!-- Technology Dependence -->
+			<div class="text-wrapper">
+				<p>Some worry about <span class="persona-highlight dependency">becoming too dependent</span> on AI technology.</p>
+				<p>6.6% of participants focus on maintaining human autonomy and agency.</p>
+			</div>
+			<div class="step" data-step="technology-dependence"></div>
+			
+			<!-- Tell Stories Section -->
+			<div class="text-wrapper">
+				<p class="big">These personas tell stories</p>
+				<p>Each perspective reveals something important about how different cultures, generations, and communities envision their future with AI.</p>
+			</div>
+			<div class="step" data-step="tell-stories"></div>
+			
+			<!-- Interactive Exploration -->
+			<div class="text-wrapper">
+				<p>Click on any region to explore local perspectives.</p>
+				<p>See how geography, culture, and context shape AI attitudes around the world.</p>
+			</div>
+			<div class="step" data-step="exploration"></div>
+			
+			<!-- Conclusion -->
+			<div class="text-wrapper">
+				<p class="big">Understanding matters</p>
+				<p>As AI reshapes our world, these diverse perspectives remind us that technology is never culturally neutral.</p>
+				<p>Building AI that serves humanity means listening to all these voices.</p>
+			</div>
+			<div class="step" data-step="conclusion"></div>
+		</div>
+	</main>
 
-    <!-- Project JavaScript -->
-    <script defer src="script.js"></script>
+	<!-- Project JavaScript -->
+	<script src="script.js"></script>
 </body>
 </html>
